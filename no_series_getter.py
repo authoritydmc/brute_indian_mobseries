@@ -85,13 +85,15 @@ print(lst)
 
 filename=f"../out/{stateName}_{opName}-{nullcheck}.txt"
 lst.sort()
+cnt=0
 with open(filename,"w") as f:
 	for z in lst:
 		if len(z)==4:
 			print(f"writing {z} to file")
 			f.write(z)
+			cnt+=1
 			f.write("\n")
-
+print(f"written total {cnt} Series to {filename}")
 
 
  

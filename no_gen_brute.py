@@ -24,8 +24,8 @@ with open("../out/"+selectedFile,"r") as f:
 				mode="w"
 			else:
 				mode="a"
-
-			gen_file_name="Series "+k[0]+" "+selectedFile[7:-4]+".dictxt"
+			file_z=selectedFile[7:-4]
+			gen_file_name="Series "+k[0]+" "+file_z+".dictxt"
 			with open("../out/"+gen_file_name,mode) as genf:
 				for qqq in range(10**6):
 					s=str(qqq)
@@ -34,10 +34,10 @@ with open("../out/"+selectedFile,"r") as f:
 						s=num+"0"*(6-l)+s
 					else:
 						s=num+s
-					print(f"Writing \t\t{s}")
+					print(f"Writing \t{s} ")
 					genf.write(s)
 					genf.write("\n")
 		prev=k[0]		
-				
+print(f"done writing for {selectedFile[4:]} ")
 			
 		
