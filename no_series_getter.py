@@ -8,6 +8,10 @@ print("Please Enter Values as Asked")
 state_to_extract="UE"#if set to None all state is considered
 telecom_to_extracted=None #if set to none all operator from particular city is extracted
 should_null_state_included=False #True or False only
+stateName="india" if state_to_extract==None else state_to_extract
+opName="all_operator" if telecom_to_extracted==None else telecom_to_extracted
+nullcheck="WithNull" if should_null_state_included else "WithoutNull"
+print(f"currently accessing {stateName} for {opName} {nullcheck}")
 print("Connecting...")
 response = requests.get(url)
 print(response)
@@ -78,9 +82,7 @@ for k in one_a_tag:
 
 		print("-"*20)
 print(lst)
-stateName="india" if state_to_extract==None else state_to_extract
-opName="all_operator" if telecom_to_extracted==None else telecom_to_extracted
-nullcheck="WithNull" if should_null_state_included else "WithoutNull"
+
 filename=f"../out/{stateName}_{opName}-{nullcheck}.txt"
 lst.sort()
 with open(filename,"w") as f:
