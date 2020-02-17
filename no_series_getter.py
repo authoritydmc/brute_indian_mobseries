@@ -6,7 +6,7 @@ import re
 url =' https://en.wikipedia.org/wiki/Mobile_telephone_numbering_in_India'
 state_to_extract="UE" #if set to None all state is considered
 telecom_to_extracted=None #if set to none all operator from particular city is extracted
-
+should_null_state_included=True
 print("Connecting...")
 response = requests.get(url)
 print(response)
@@ -34,7 +34,10 @@ for k in one_a_tag:
 		i+=1
 		if i==limit:
 			break
+
 		res=f"{no} {operator} {state}"
+		print(res)
+
 		if state_to_extract is  None :
 			if telecom_to_extracted is None:
 				lst.append(no)
@@ -53,11 +56,20 @@ for k in one_a_tag:
 				pass
 				#currently not the intended operator
 
+		elif should_null_state_included:
+			if telecom_to_extracted is None:
+				if len(state)!=2:
+					lst.append(no)
+			elif telecom_to_extracted in res:
+					if len(state)!=2:
+						lst.append(no)
+			else:
+				pass #not desired telcom op
 		else:
 			pass
 			#currently not the desired State...
 
-		print(res)
+		
 
 		print("-"*20)
 print(lst)
