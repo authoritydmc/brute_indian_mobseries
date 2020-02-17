@@ -1,5 +1,5 @@
 import os
-o=os.popen(" ls *.txt")
+o=os.popen(" ls ../out/*.txt")
 output=o.read()
 lst=list(output.split("\n"))
 lst.sort(key=str.lower)
@@ -13,7 +13,7 @@ option=int(input())
 selectedFile=lst[option]
 print("selected file=",selectedFile)
 
-with open(selectedFile,"r") as f:
+with open("../out/"+selectedFile,"r") as f:
 	prev="1"
 	for k in f:
 		print("Current k",k,len(k))
