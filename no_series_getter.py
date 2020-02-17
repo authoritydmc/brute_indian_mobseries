@@ -75,7 +75,7 @@ for k in one_a_tag:
 print(lst)
 stateName="india" if state_to_extract==None else state_to_extract
 opName="all_operator" if telecom_to_extracted==None else telecom_to_extracted
-filename=f"{stateName}__{opName}.txt"
+filename=f"../out/{stateName}__{opName}.txt"
 lst.sort()
 with open(filename,"w") as f:
 	for z in lst:
