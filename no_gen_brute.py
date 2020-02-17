@@ -5,7 +5,7 @@ lst=list(output.split("\n"))
 lst.sort(key=str.lower)
 for k in range(len(lst)):
 	if ".txt" in lst[k]:
-		print(f"{k} {lst[k]}")
+		print(f"{k} {lst[k][7:]}")
 
 print("\n\n")
 print("Please Enter the No of the file\nfor which you want to brute_force gen>",end="")
@@ -19,11 +19,11 @@ with open("../out/"+selectedFile,"r") as f:
 		print("Current k",k,len(k))
 		if len(k)==5:
 			num=k.replace("\n","")
-			print("yes it is no")
 			if prev!=k[0]:
 				print(f"Now Generating for {k[0]} series")
-				gen_file_name="Series "+k[0]+".dictxt"
-				with open(gen_file_name,"w") as genf:
+				input()
+				gen_file_name="Series "+k[0]+" "+selectedFile[7:-4]+".dictxt"
+				with open("../out/"+gen_file_name,"w") as genf:
 					for qqq in range(10**6):
 						s=str(qqq)
 						l=len(s)
