@@ -4,9 +4,10 @@ import time
 from bs4 import BeautifulSoup as bs
 import re
 url =' https://en.wikipedia.org/wiki/Mobile_telephone_numbering_in_India'
-state_to_extract="UE" #if set to None all state is considered
+print("Please Enter Values as Asked")
+state_to_extract="UE"#if set to None all state is considered
 telecom_to_extracted=None #if set to none all operator from particular city is extracted
-should_null_state_included=True
+should_null_state_included=False #True or False only
 print("Connecting...")
 response = requests.get(url)
 print(response)
@@ -40,7 +41,11 @@ for k in one_a_tag:
 
 		if state_to_extract is  None :
 			if telecom_to_extracted is None:
-				lst.append(no)
+				if should_null_state_included:
+					if len(state)!=2:
+						lst.append(no) #all india all operator only where no state value present
+				else:
+					pass # all india all operator all no 
 			elif telecom_to_extracted in res:
 					lst.append(no)
 			else:
@@ -75,7 +80,8 @@ for k in one_a_tag:
 print(lst)
 stateName="india" if state_to_extract==None else state_to_extract
 opName="all_operator" if telecom_to_extracted==None else telecom_to_extracted
-filename=f"../out/{stateName}__{opName}.txt"
+nullcheck="WithNull" if should_null_state_included else "WithoutNull"
+filename=f"../out/{stateName}_{opName}-{nullcheck}.txt"
 lst.sort()
 with open(filename,"w") as f:
 	for z in lst:
