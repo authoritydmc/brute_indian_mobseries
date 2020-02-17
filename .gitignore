@@ -1,2 +1,5 @@
 **/.dictext
 **/.text
+*.text
+*.dictext
+
