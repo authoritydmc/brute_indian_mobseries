@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 start=8
 to=20
-filename=f"../out/repetative{start}-{to}.txt"
+filename=f"../out/repetative{start}-{to}.dictxt"
 cnt=1
 with open(filename,"w") as f:
     f.write("1234567890")
@@ -30,7 +30,7 @@ with open(filename,"w") as f:
                 f.write(_)
                 cnt+=1
                 f.write("\n")
-                print("Writing ...",_)d
+                print("Writing ...",_)
 print("Total record written..",cnt)
 print(f"Done Generating to {filename} .")
 input()
