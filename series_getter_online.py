@@ -3,10 +3,13 @@ import requests
 import urllib.request
 import time
 from bs4 import BeautifulSoup as bs
+import getsize 
 url =' https://en.wikipedia.org/wiki/Mobile_telephone_numbering_in_India'
 print("Please Enter Values as Asked")
-state_to_extract="UE"#if set to None all state is considered
-telecom_to_extracted=None #if set to none all operator from particular city is extracted
+print("Enter the Circle ...")
+state_to_extract=input()#if set to None all state is considered
+state_to_extract=state_to_extract.upper()
+telecom_to_extracted=None#if set to none all operator from particular city is extracted
 should_null_state_included=False #True or False only
 stateName="india" if state_to_extract==None else state_to_extract
 opName="all_operator" if telecom_to_extracted==None else telecom_to_extracted
@@ -41,7 +44,6 @@ for k in one_a_tag:
 			break
 
 		res=f"{no} {operator} {state}"
-		print(res)
 
 		if state_to_extract is  None :
 			if telecom_to_extracted is None:
@@ -78,10 +80,7 @@ for k in one_a_tag:
 			pass
 			#currently not the desired State...
 
-		
 
-		print("-"*20)
-print(lst)
 
 filename=f"../out/{stateName}_{opName}-{nullcheck}.txt"
 lst.sort()
@@ -89,11 +88,12 @@ cnt=0
 with open(filename,"w") as f:
 	for z in lst:
 		if len(z)==4:
-			print(f"writing {z} to file")
+			print(f"writing {z} to file",end="\r")
 			f.write(z)
 			cnt+=1
 			f.write("\n")
-print(f"written total {cnt} Series to {filename}")
-
-input()
+size_bytes=(cnt*5)+1
+getsize.printSize(size_bytes)
+print(f"\nwritten total {cnt} Series to {filename}\n\n")
+time.sleep(5)
  

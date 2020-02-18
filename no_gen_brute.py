@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 import os
+import getsize
+import time
 o=os.popen(" ls ../out/*.txt")
 output=o.read()
 lst=list(output.split("\n"))
@@ -13,35 +15,53 @@ print("Please Enter the No of the file\nfor which you want to brute_force gen>",
 option=int(input())
 selectedFile=lst[option]
 print("selected file=",selectedFile)
-cnt_rec=0
+lst_series=[]
 with open("../out/"+selectedFile,"r") as f:
-	prev="1"
 	for k in f:
-		cnt_rec+=1
-		print("Current k",k,len(k))
 		if len(k)==5:
-			num=k.replace("\n","")
-			if prev!=k[0]:
-				print(f"Now Generating for {k[0]} series")
-				mode="w"
+			lst_series.append(k[:-1])#append to list
+lst_series.sort()#sort the list
+
+dicsize={}
+for z in lst_series:
+	dicsize[z[0]]=dicsize.get(z[0],0)+1
+
+prev="-"
+for k in lst_series:
+	if prev!=k[0]:
+		if prev!="-":
+			print(f"Done Writing to {gen_file_name} for {k[0]} series\n\n")
+		time.sleep(1)
+		print(f"\t\t\aNow Generating for {k[0]} series")
+		print("-"*50)
+		u,s=getsize.getSize((((dicsize[k[0]])*(10**6))*11)+1)
+		print(f"For {k[0]} series FileSize will Be :{s} {u}")
+		print("-"*50)
+		mode="w"
+		time.sleep(1)
+	else:
+		mode="a"
+
+	gen_file_name="Series "+k[0]+" "+selectedFile[7:-4]+".dictxt"
+	with open("../out/"+gen_file_name,mode) as genf:
+		for qqq in range(10**6):
+			s=str(qqq)
+			l=len(s)
+			if l<6:
+				s=k+"0"*(6-l)+s
 			else:
-				mode="a"
-			file_z=selectedFile[7:-4]
-			gen_file_name="Series "+k[0]+" "+file_z+".dictxt"
-			with open("../out/"+gen_file_name,mode) as genf:
-				for qqq in range(10**6):
-					s=str(qqq)
-					l=len(s)
-					if l<6:
-						s=num+"0"*(6-l)+s
-					else:
-						s=num+s
-					print(f"Writing \t{s} ")
-					genf.write(s)
-					genf.write("\n")
-		prev=k[0]		
-print(f"done writing for {selectedFile[7:]} ")
-print(f"Total Record Wriiten = {(cnt_rec)*(10**6)} for {cnt_rec} series")
-input()
+				s=k+s
+			print(f"Writing \t{s} ",end="\r")
+			genf.write(s)
+			genf.write("\n")
+
+	prev=k[0]		
+print(f"\n\nDONE WRITING FOR FILE {selectedFile[7:]} ")
+
+print(f"\nTotal Record Writen = {(len(lst_series))*(10**6)}")
+
+getsize.printSize((((len(lst_series))*(10**6))*11)+1)
+
+time.sleep(5)
 			
 		
