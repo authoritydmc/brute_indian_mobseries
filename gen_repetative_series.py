@@ -2,15 +2,10 @@
 import getsize
 import time
 start=8
-to=50
+to=10
 filename=f"../out/repetative{start}-{to}.dictxt"
 cnt=1
 total_bytes=12
-for _ in range(start,to+1):
-    total_bytes+=(_+1)*2+(_+2)*2+(10*(to-start)+1)
-u,s=getsize.getSize(total_bytes)
-print(f"total Size Will be {s} {u}")
-time.sleep(2)
 with open(filename,"w") as f:
     f.write("1234567890")
     f.write("\n")
@@ -32,12 +27,14 @@ with open(filename,"w") as f:
         f.write("\n")
         print("Writing...",revz,end="\r")
         print("Writing...",revz[::-1],end="\r")
+        total_bytes+=(len(strz)+1)*2+(len(strz)+2)*2
         cnt+=4
         for k in range(10):
                 _=f"{k}"*i
                 f.write(_)
                 cnt+=1
                 f.write("\n")
+                total_bytes+=len(_)+1
                 print("Writing ...",_,end="\r")
 print(" "*((to-start)+40))
 print("Total record written..",cnt)
