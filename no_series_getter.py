@@ -1,8 +1,8 @@
+#!/usr/bin/env python
 import requests
 import urllib.request
 import time
 from bs4 import BeautifulSoup as bs
-import re
 url =' https://en.wikipedia.org/wiki/Mobile_telephone_numbering_in_India'
 print("Please Enter Values as Asked")
 state_to_extract="UE"#if set to None all state is considered
@@ -95,5 +95,5 @@ with open(filename,"w") as f:
 			f.write("\n")
 print(f"written total {cnt} Series to {filename}")
 
-
+input()
  

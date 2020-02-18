@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import os
 o=os.popen(" ls ../out/*.txt")
 output=o.read()
