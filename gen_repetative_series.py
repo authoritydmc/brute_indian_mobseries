@@ -2,7 +2,7 @@
 import getsize
 import time
 start=8
-to=10
+to=1000
 filename=f"../out/repetative{start}-{to}.dictxt"
 cnt=1
 total_bytes=12

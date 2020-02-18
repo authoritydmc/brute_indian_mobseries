@@ -25,9 +25,10 @@ lst_series.sort()#sort the list
 dicsize={}
 for z in lst_series:
 	dicsize[z[0]]=dicsize.get(z[0],0)+1
-
+cnt=0
 prev="-"
 for k in lst_series:
+
 	if prev!=k[0]:
 		if prev!="-":
 			print(f"Done Writing to {gen_file_name} for {k[0]} series\n\n")
@@ -39,9 +40,11 @@ for k in lst_series:
 		print("-"*50)
 		mode="w"
 		time.sleep(1)
+		cnt=1
 	else:
 		mode="a"
-
+		cnt+=1
+	print(f"\t\tWriting {cnt}/{dicsize[k[0]]} for {k[0]} Series")
 	gen_file_name="Series "+k[0]+" "+selectedFile[7:-4]+".dictxt"
 	with open("../out/"+gen_file_name,mode) as genf:
 		for qqq in range(10**6):
@@ -54,7 +57,7 @@ for k in lst_series:
 			print(f"Writing \t{s} ",end="\r")
 			genf.write(s)
 			genf.write("\n")
-
+	print(f"\t\twritten {cnt}/{dicsize[k[0]]} for {k[0]}")
 	prev=k[0]		
 print(f"\n\nDONE WRITING FOR FILE {selectedFile[7:]} ")
 
