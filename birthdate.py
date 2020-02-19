@@ -1,7 +1,9 @@
-years=[1980,1981]
 import time
+import getsize
+years=[1980,2005]
 month=[31,29,31,30,31,30,31,31,30,31,30,31]
-filename="../out/birthdays.dictxt"
+filename=f"../out/birthdays{years[0]}-{years[1]}.dictxt"
+total_byte=1
 with open(filename,"w") as f:
 	for year in range(years[0],years[1]+1):
 		for mnth in range(12):
@@ -21,8 +23,9 @@ with open(filename,"w") as f:
 					f.write(strz)
 					f.write("\n")
 					print(f"Writing {strz}",end="\r")
+					total_byte+=9
 
-
+getsize.printSize(total_byte)
 print("\nWritten to ",filename)
 time.sleep(3)
 
