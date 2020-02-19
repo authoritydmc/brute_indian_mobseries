@@ -62,7 +62,7 @@ for k in one_a_tag:
 					if len(state)!=2:
 						lst.append(no) #all india all operator only where no state value present
 				else:
-					pass # all india all operator all no 
+					lst.append(no) # all india all operator all no 
 			elif telecom_to_extracted in res:
 					lst.append(no)
 			else:
@@ -111,5 +111,6 @@ with open(filename,"w") as f:
 size_bytes=(cnt*5)+1
 getsize.printSize(size_bytes)
 print(f"\nwritten total {cnt} Series to {filename}\n\n")
+cnt=0
 time.sleep(5)
  

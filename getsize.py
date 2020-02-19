@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 def printSize(total_bytes):
     size_kb=total_bytes/1024
     size_mb=size_kb/1024
