@@ -21,7 +21,13 @@ with open("../out/"+selectedFile,"r") as f:
 		if len(k)==5:
 			lst_series.append(k[:-1])#append to list
 lst_series.sort()#sort the list
+print("-"*80)
+print("\t\t\t -: TotalSize will  be :-")
+getsize.printSize((((len(lst_series))*(10**6))*11)+1)
 
+print("-"*80)
+time.sleep(2)
+#for checking which series willl be next i.e 1/10 of series 6 logic 
 dicsize={}
 for z in lst_series:
 	dicsize[z[0]]=dicsize.get(z[0],0)+1
@@ -57,7 +63,7 @@ for k in lst_series:
 			print(f"Writing \t{s} ",end="\r")
 			genf.write(s)
 			genf.write("\n")
-	print(f"->                         written {cnt}/{dicsize[k[0]]} for {int(k[0])-1}                            ")
+	print(f"->                         written {cnt}/{dicsize[k[0]]}                            ")
 	prev=k[0]		
 print(f"\n\nDONE WRITING FOR FILE {selectedFile[7:]} ")
 
