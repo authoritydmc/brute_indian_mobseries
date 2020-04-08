@@ -1,6 +1,6 @@
 import time
 import getsize
-years=[1980,2005]
+years=[1970,2021]
 month=[31,29,31,30,31,30,31,31,30,31,30,31]
 filename=f"../out/birthdays{years[0]}-{years[1]}.dictxt"
 total_byte=1

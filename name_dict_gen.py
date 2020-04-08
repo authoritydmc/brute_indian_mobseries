@@ -2,13 +2,14 @@
 import requests
 import urllib.request
 import time
+import os
 from bs4 import BeautifulSoup as bs
 import getsize 
 baseurl ='http://www.20000-names.com/'  #sample url http://www.20000-names.com/male_a_names_2.htm
 gender="male" #male or female
 urllist=[]
-
-alphabets=list("ab")
+print("PATH:",__file__)
+alphabets=list("a")
 for i in range(len(alphabets)):
 	url=baseurl+gender+"_"+alphabets[i]+"_names"
 	urllist.append(url)
@@ -25,34 +26,42 @@ for url in urllist:
 		print("Connnecting ...")
 		#finalurl .... 
 		try:
-			response=request.get(finalurl)0
+			response=requests.get(finalurl)
 			print(response,finalurl)
-			soup=bs(response.content,'htm.parser')
-			print(soup.prettify())
-			input()
-			with open("dump_data.txt","w") as f:
+			soup=bs(response.content,'html.parser')
+			# print(soup.prettify())
+			# print(list(soup.children)[20])
+			# input()
+			nvnv=0
 
-				f.write(soup.prettify())
-		except :
-			print("some error ")
+			with open("dump_data.txt","a") as f:
+				for k in list(soup.children):
+					print("------",nvnv,k,".....",nvnv)
+					nvnv+=1
+					strz=f"\n------{nvnv}{k}.....{nvnv}\n"
+				f.write(strz)
+				print("Writeten to file")
+		except Exception as err:
+			print("some error ",err)
 
 
 		input()
 
 
-lst=["raj","aman","vishal"]
 
-filename=f"../out/name_dict_indian.txt"
-lst.sort()
+# lst=["raj","aman","vishal"]
 
-if len(lst)==0:
-	print("NO name Found\nExiting ")
-	time.sleep(3)
-	exit()
-"""initialize count variables"""
-size_bytes=0
-cnt=0
-combos=["123","1234","12345","123456","12345678"]
+# filename=f"../out/name_dict_indian.txt"
+# lst.sort()
+
+# if len(lst)==0:
+# 	print("NO name Found\nExiting ")
+# 	time.sleep(3)
+# 	exit()
+# """initialize count variables"""
+# size_bytes=0
+# cnt=0
+# combos=["123","1234","12345","123456","12345678"]
 # for combo in combos:
 # 	if combo==combos[0]:
 # 		mode="w"
