@@ -35,7 +35,7 @@ for k in lst_series:
 		time.sleep(1)
 		print(f"\t\t\aNow Generating for {k[0]} series")
 		print("-"*50)
-		u,s=getsize.getSize((((dicsize[k[0]])*(10**6))*11)+1)
+		u,s=getsize.getSizeDecimal((((dicsize[k[0]])*(10**6))*11)+1)
 		print(f"For {k[0]} series FileSize will Be :{s} {u}")
 		print("-"*50)
 		mode="w"
@@ -57,7 +57,7 @@ for k in lst_series:
 			print(f"Writing \t{s} ",end="\r")
 			genf.write(s)
 			genf.write("\n")
-	print(f"\t\twritten {cnt}/{dicsize[k[0]]} for {k[0]}")
+	print(f"->                         written {cnt}/{dicsize[k[0]]} for {k[0]}                            ")
 	prev=k[0]		
 print(f"\n\nDONE WRITING FOR FILE {selectedFile[7:]} ")
 

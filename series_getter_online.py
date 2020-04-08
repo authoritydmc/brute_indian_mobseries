@@ -11,6 +11,8 @@ print("Enter n at the not needed place \n(only applicable for CircleName and ope
 print("ENTER---->",end="")
 ins=input().split()
 
+
+
 state_to_extract=ins[0].upper() if len(ins)>=1 and ins[0].lower()!="n" else  None#if set to None all state is considered
 telecom_to_extracted=ins[1].upper() if len(ins)>=2 and ins[1].lower()!="n" else None #if set to none all operator from particular city is extracted
 should_null_state_included=True if len(ins)>=3 and ins[2].lower()=="t" else False #True or False only
@@ -56,6 +58,8 @@ for k in one_a_tag:
 
 		res=f"{no} {operator} {state}"
 
+		# print("Series->",res)
+		# time.sleep(2)
 		if state_to_extract is  None :
 			if telecom_to_extracted is None:
 				if should_null_state_included:
@@ -74,6 +78,7 @@ for k in one_a_tag:
 				lst.append(no)
 			elif telecom_to_extracted in res :
 					lst.append(no) #inteded operator of intended state found
+					# print("state in tel in res")
 			else:
 				pass
 				#currently not the intended operator
@@ -97,8 +102,8 @@ filename=f"../out/{stateName}_{opName}-{nullcheck}.txt"
 lst.sort()
 cnt=0
 if len(lst)==0:
-	print("NO Valid Series Found\nExiting ")
-	time.sleep(3)
+	print(f"NO Valid Series Found at {url}\nExiting ")
+	time.sleep(5)
 	exit()
 
 with open(filename,"w") as f:
