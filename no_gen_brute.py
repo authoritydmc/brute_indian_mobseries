@@ -57,7 +57,7 @@ for k in lst_series:
 			print(f"Writing \t{s} ",end="\r")
 			genf.write(s)
 			genf.write("\n")
-	print(f"->                         written {cnt}/{dicsize[k[0]]} for {k[0]}                            ")
+	print(f"->                         written {cnt}/{dicsize[k[0]]} for {int(k[0])-1}                            ")
 	prev=k[0]		
 print(f"\n\nDONE WRITING FOR FILE {selectedFile[7:]} ")
 
